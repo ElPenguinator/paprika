@@ -42,7 +42,7 @@ public class ModelToGraph {
     private static final Label argumentLabel = DynamicLabel.label("Argument");
     private static final Label externalArgumentLabel = DynamicLabel.label("ExternalArgument");
 
-    private Map<Entity,Node> methodNodeMap;
+    private Map<paprika.entities.Entity,Node> methodNodeMap;
     private Map<PaprikaClass,Node> classNodeMap;
     private Map<PaprikaVariable,Node> variableNodeMap;
 
@@ -226,7 +226,7 @@ public class ModelToGraph {
     public void createCallGraph(PaprikaApp paprikaApp) {
         for (PaprikaClass paprikaClass : paprikaApp.getPaprikaClasses()) {
             for (PaprikaMethod paprikaMethod : paprikaClass.getPaprikaMethods()){
-                for(Entity calledMethod : paprikaMethod.getCalledMethods()){
+                for(paprika.entities.Entity calledMethod : paprikaMethod.getCalledMethods()){
                     methodNodeMap.get(paprikaMethod).createRelationshipTo(methodNodeMap.get(calledMethod),RelationTypes.CALLS);
                 }
             }
